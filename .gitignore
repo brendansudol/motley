@@ -1,0 +1,14 @@
+*.pyc
+*.sqlite3
+
+.env
+.tox
+
+.DS_Store
+
+__pycache__
+
+NOTES
+
+/node_modules
+/venv

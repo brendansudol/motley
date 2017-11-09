@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Motley</title>
+    {% block head %}{% endblock %}
+    <link rel="stylesheet" href="https://unpkg.com/basscss@7.1.1/css/basscss.min.css">
+  </head>
+  <body>
+    {% block content %}
+      {% include "web/_includes/nav.html" %}
+      <div class="p2 container">
+        {% block container %}{% endblock %}
+      </div>
+    {% endblock %}
+    {% block footerjs %}{% endblock %}
+  </body>
+</html>
