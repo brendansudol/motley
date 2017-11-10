@@ -4,14 +4,12 @@ from rest_framework.generics import ListCreateAPIView
 from rest_framework.response import Response
 from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField, ReadOnlyField
 from rest_framework.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST
-from rest_framework.views import APIView
-from rest_framework.viewsets import ModelViewSet
 
 from api.models import Location
 
 
 class UserSerializer(ModelSerializer):
-    locations = PrimaryKeyRelatedField(many=True, queryset=Location.objects.all())
+    locations = PrimaryKeyRelatedField(many=True, read_only=True)
 
     class Meta:
         model = User
@@ -28,12 +26,10 @@ class UserSerializer(ModelSerializer):
         return user
 
 
-class UserViewSet(ModelViewSet):
+class UserListView(ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-
-class UserCreateView(APIView):
     def post(self, request, format='json'):
         serializer = UserSerializer(data=request.data)
 
